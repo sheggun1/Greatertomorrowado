@@ -7,14 +7,41 @@
 <meta name="description" content="Greater Tomorrow Model Schools, Ado Ekiti, Ekiti State. A caring, co-educational nursery, primary and secondary school in Ado Ekiti, focused on academic excellence and good character.">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src https://greater-iorg.onrender.com; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<script>try{document.documentElement.dataset.theme=localStorage.getItem('gt_theme')||'classic'}catch(e){}</script>
+<script>
+/* Applies the saved theme before first paint and loads only that theme's fonts. */
+(function(){
+  var F={
+    classic:'family=Newsreader:opsz,wght@6..72,500;6..72,600;6..72,700&family=Public+Sans:wght@400;600;700;800',
+    emerald:'family=DM+Serif+Display&family=DM+Sans:wght@400;500;700',
+    royal:'family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,500&family=Jost:wght@400;500;600',
+    sunrise:'family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800',
+    academic:'family=Source+Serif+4:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600',
+    ivory:'family=Bodoni+Moda:ital,wght@0,400;0,500;1,400;1,500&family=Work+Sans:wght@400;500;600',
+    burgundy:'family=Gilda+Display&family=Mulish:wght@400;600;700;800',
+    future:'family=Sora:wght@500;600;700&family=Manrope:wght@400;600;700;800'
+  };
+  window.GT_FONTS=F;
+  window.gtLoadFonts=function(t){
+    if(!F[t])t='classic';
+    var id='gt-font-'+t;
+    if(document.getElementById(id))return;
+    var l=document.createElement('link');l.id=id;l.rel='stylesheet';
+    l.href='https://fonts.googleapis.com/css2?'+F[t]+'&display=swap';
+    document.head.appendChild(l);
+  };
+  var t='classic';
+  try{t=localStorage.getItem('gt_theme')||'classic'}catch(e){}
+  if(!F[t])t='classic';
+  document.documentElement.dataset.theme=t;
+  gtLoadFonts(t);
+})();
+</script>
 <meta name="theme-color" content="#0a2351">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="public-on">
 
 <!-- Icon & crest library (hand-drawn line icons) -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -555,13 +582,36 @@ async function loadPublicSite() {
 }
 
 const THEMES = ['classic','emerald','royal','sunrise','academic','ivory','burgundy','future'];
-const THEME_LABELS = { classic:'Classic Blue', emerald:'Emerald Prestige', royal:'Royal Burgundy', sunrise:'Sunrise Orange', academic:'Modern Academic', ivory:'Ivory Minimal', burgundy:'Burgundy Classic', future:'Future Forward' };
+const THEME_LABELS = { classic:'Heritage Blue', emerald:'Emerald Rail', royal:'Royal Ceremony', sunrise:'Sunrise Playground', academic:'Modern Academic', ivory:'Ivory Editorial', burgundy:'Burgundy Noir', future:'Future Glass' };
+const THEME_META = {
+  classic:  { d:'Traditional two-tier header, full-width hero, crest details.', c:['#0b2447','#1d4fb8','#b98a2c'] },
+  emerald:  { d:'Fixed sidebar menu, split hero with diagonal photo.', c:['#0a3324','#0f8a5a','#d2ac52'] },
+  royal:    { d:'Centred masthead, framed hero, arched portraits.', c:['#3a0f1d','#8c2742','#b6934f'] },
+  sunrise:  { d:'Playful floating menu, bold outlines, blob hero.', c:['#2b1b12','#f26a1b','#ffc933'] },
+  academic: { d:'Structured layout with ruled rows and list-style news.', c:['#0f2a43','#2563a6','#c18a1b'] },
+  ivory:    { d:'Magazine masthead, oversized type, masonry gallery.', c:['#1d1a15','#8a6a2c','#faf6ec'] },
+  burgundy: { d:'Dark cinematic look, gilded lines, news carousel.', c:['#12060b','#d4af6a','#2a0f19'] },
+  future:   { d:'Floating glass menu, bento grids, image-led news.', c:['#0a1d33','#0e8f9c','#6d5dfc'] }
+};
 function applyTheme(t) {
   t = THEMES.includes(t) ? t : 'classic';
   document.documentElement.dataset.theme = t;
+  if (window.gtLoadFonts) window.gtLoadFonts(t);
   try { localStorage.setItem('gt_theme', t); } catch (e) {}
   const m = document.querySelector('meta[name="theme-color"]');
   if (m) m.content = getComputedStyle(document.documentElement).getPropertyValue('--navy').trim() || '#0a2351';
+}
+function themePickerHtml(current) {
+  return THEMES.map(t => {
+    const c = THEME_META[t].c;
+    return `<button type="button" class="theme-opt" data-theme-pick="${t}" aria-pressed="${t === current}">
+      <span class="sw" style="background:linear-gradient(135deg,${c[0]} 0 52%,${c[1]} 52% 80%,${c[2]} 80%)"></span>
+      <strong>${esc(THEME_LABELS[t])}</strong><small>${esc(THEME_META[t].d)}</small></button>`;
+  }).join('');
+}
+function syncThemePicker() {
+  const v = $('sTheme') ? $('sTheme').value : '';
+  document.querySelectorAll('[data-theme-pick]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.themePick === v)));
 }
 function applySettings() {
   const s = state.settings || {};
@@ -612,8 +662,10 @@ function renderHero() {
   const slides = state.slides.length ? state.slides
     : [{ title: 'Raising confident, well-mannered and brilliant children', subtitle: 'Welcome to Greater Tomorrow', image_url: fallbackImg }];
   wrap.innerHTML = slides.map((sl, i) => `
-    <div class="hero-slide ${i === 0 ? 'active' : ''}" style="${bg(sl.image_url || fallbackImg)}">
+    <div class="hero-slide ${i === 0 ? 'active' : ''}">
+      <div class="hero-img" style="${bg(sl.image_url || fallbackImg)}" aria-hidden="true"></div>
       <div class="hero-content"><div class="hero-inner">
+        <div class="hero-badge"><i></i>Admissions open for ${esc(s.session || '2026/2027')}</div>
         ${sl.subtitle ? `<div class="hero-eyebrow">${esc(sl.subtitle)}</div>` : ''}
         <h1>${esc(sl.title || 'Welcome to Greater Tomorrow')}</h1>
         <p class="sub">${esc(defaultSub)}</p>
@@ -1042,9 +1094,10 @@ async function renderSettingsPane(pane) {
         <div><label>Tagline / location</label><input id="sTag" value="${escAttr(s.tagline || '')}"></div>
         <div><label>Motto</label><input id="sMotto" value="${escAttr(s.motto || '')}"></div>
       </div>
-      <div><label>Website theme</label>
-        <select id="sTheme" onchange="applyTheme(this.value)">${THEMES.map(t => `<option value="${t}"${(s.theme || 'classic') === t ? ' selected' : ''}>${THEME_LABELS[t] || t}</option>`).join('')}</select>
-        <p class="hint">Choose from eight school-wide colour systems. Preview instantly; click Save settings to publish to every visitor.</p></div>
+      <div><label for="sTheme">Website theme</label>
+        <select id="sTheme" onchange="applyTheme(this.value);syncThemePicker()">${THEMES.map(t => `<option value="${t}"${(s.theme || 'classic') === t ? ' selected' : ''}>${THEME_LABELS[t] || t}</option>`).join('')}</select>
+        <div class="theme-picker" id="themePicker">${themePickerHtml(s.theme || 'classic')}</div>
+        <p class="hint">Eight complete website designs, each with its own layout, menu, hero, cards and typography. Pick one, tap View site (top bar) to preview it, then click Save settings to publish it to every visitor.</p></div>
       <div><label>Short description (shown in hero and footer)</label><textarea id="sAbout" rows="3">${esc(s.about_short || '')}</textarea></div>
       ${imageField('sLogo', 'School logo (optional — replaces the default crest)', s.logo_url)}
       <h3>Contact</h3>
@@ -1083,6 +1136,10 @@ async function renderSettingsPane(pane) {
     const id = z.dataset.pick, input = $(id + '_file');
     z.onclick = () => input.click(); input.onchange = () => uploadImage(id, input.files[0]);
   });
+  $('themePicker').onclick = e => {
+    const b = e.target.closest('[data-theme-pick]'); if (!b) return;
+    $('sTheme').value = b.dataset.themePick; applyTheme(b.dataset.themePick); syncThemePicker();
+  };
   $('settingsForm').onsubmit = saveSettings;
 }
 async function saveSettings(e) {
