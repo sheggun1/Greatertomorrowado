@@ -1340,7 +1340,7 @@ tr:hover td{background:var(--mist)}
 [data-theme="burgundy"] .program .num{color:var(--gold);font-family:var(--display);font-size:24px}
 [data-theme="burgundy"] .program .ico{background:rgba(212,175,106,.1);color:var(--gold);border-radius:0}
 [data-theme="burgundy"] .parents{background:#220d16;color:var(--ink)}
-[data-theme="burgundy"] .parents h2.title,.parents .pitem h3{color:var(--ink)}
+[data-theme="burgundy"] .parents h2.title,[data-theme="burgundy"] .parents .pitem h3{color:var(--ink)}
 [data-theme="burgundy"] .pitem{background:transparent;border:0;border-top:1px solid var(--line);border-radius:0;padding:24px 0}
 [data-theme="burgundy"] .pitem .ico{background:transparent;border:1px solid var(--gold);color:var(--gold);border-radius:0}
 [data-theme="burgundy"] .staff-grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:30px}
