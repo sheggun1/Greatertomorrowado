@@ -406,3 +406,233 @@ tr:hover td{background:var(--mist)}
 [data-theme="royal"] .hero p.sub{margin-left:auto;margin-right:auto}
 [data-theme="sunrise"] .hero h1,[data-theme="sunrise"] h2.title{font-weight:800}
 [data-theme="emerald"] .parents,[data-theme="royal"] .parents,[data-theme="sunrise"] .parents,[data-theme="emerald"] footer,[data-theme="royal"] footer,[data-theme="sunrise"] footer{color:#fff}
+
+
+/* =========================================================
+   THEME DESIGN SYSTEM — structural identities, not recolours
+   Each theme changes composition, geometry, rhythm and surfaces.
+   ========================================================= */
+
+/* CLASSIC BLUE — confident, spacious school-institution layout */
+:root[data-theme="classic"] .navbar-inner{max-width:1320px}
+:root[data-theme="classic"] .hero{min-height:610px}
+:root[data-theme="classic"] .hero-inner{max-width:720px}
+:root[data-theme="classic"] .facts-card{margin-top:-42px;position:relative;z-index:4;box-shadow:0 18px 50px rgba(10,35,81,.13)}
+:root[data-theme="classic"] .programs{grid-template-columns:repeat(3,minmax(0,1fr))}
+:root[data-theme="classic"] .program{border-top:4px solid var(--blue);border-radius:5px 5px 16px 16px}
+:root[data-theme="classic"] .section-head:not(.center){max-width:760px}
+:root[data-theme="classic"] .gallery-grid{grid-auto-rows:205px}
+:root[data-theme="classic"] .adm{gap:64px}
+
+/* EMERALD PRESTIGE — organic, nature-led, soft layered surfaces */
+:root[data-theme="emerald"] body{background:#f5faf6}
+:root[data-theme="emerald"] .topbar{background:#05291b}
+:root[data-theme="emerald"] .navbar{width:min( calc(100% - 36px), 1380px);margin:14px auto 0;border-radius:18px;box-shadow:0 12px 34px rgba(6,48,31,.09);border:1px solid rgba(15,138,90,.12)}
+:root[data-theme="emerald"] .navbar-inner{min-height:84px}
+:root[data-theme="emerald"] .hero{margin:18px auto 0;width:min(calc(100% - 36px),1380px);min-height:600px;border-radius:30px;overflow:hidden}
+:root[data-theme="emerald"] .hero-slide{border-radius:30px}
+:root[data-theme="emerald"] .hero-inner{max-width:660px}
+:root[data-theme="emerald"] .hero h1{font-size:clamp(42px,5.4vw,70px);letter-spacing:-2px}
+:root[data-theme="emerald"] .hero-eyebrow{border-radius:999px;background:rgba(220,250,232,.16);border:1px solid rgba(220,250,232,.35);padding:9px 16px}
+:root[data-theme="emerald"] .facts{margin-top:-38px;position:relative;z-index:5}
+:root[data-theme="emerald"] .facts-card{border-radius:24px;box-shadow:0 18px 48px rgba(6,48,31,.11)}
+:root[data-theme="emerald"] .about-grid{grid-template-columns:1.08fr .92fr;gap:clamp(38px,7vw,100px)}
+:root[data-theme="emerald"] .about-visual{border-radius:48% 48% 22px 22px;overflow:hidden}
+:root[data-theme="emerald"] .about-badge{border-radius:18px 18px 18px 4px}
+:root[data-theme="emerald"] .programs{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+:root[data-theme="emerald"] .program{border:0;border-radius:22px;background:linear-gradient(145deg,#fff,#edf8f1);box-shadow:0 12px 30px rgba(6,48,31,.06);padding:30px}
+:root[data-theme="emerald"] .program:nth-child(3n){grid-column:span 2}
+:root[data-theme="emerald"] .program .num{font-size:44px;opacity:.24}
+:root[data-theme="emerald"] .pitem{border-radius:22px;background:#fff;box-shadow:0 12px 28px rgba(6,48,31,.06)}
+:root[data-theme="emerald"] .g-item{border-radius:24px}
+:root[data-theme="emerald"] .cta{border-radius:34px;margin:0 18px 24px}
+:root[data-theme="emerald"] footer{border-radius:30px 30px 0 0}
+
+/* ROYAL BURGUNDY — formal editorial, centred and ceremonial */
+:root[data-theme="royal"] .topbar{background:#260812}
+:root[data-theme="royal"] .navbar{border-bottom:3px double #d7a6b3}
+:root[data-theme="royal"] .navbar-inner{min-height:94px}
+:root[data-theme="royal"] .brand-text strong{font-family:'Playfair Display',Georgia,serif;letter-spacing:.1px}
+:root[data-theme="royal"] .nav-links a{font-family:'Playfair Display',Georgia,serif;font-size:15px}
+:root[data-theme="royal"] .hero{min-height:660px}
+:root[data-theme="royal"] .hero-slide::after{background:linear-gradient(180deg,rgba(40,8,20,.42),rgba(40,8,20,.86))}
+:root[data-theme="royal"] .hero-content{align-items:center;text-align:center}
+:root[data-theme="royal"] .hero-inner{max-width:850px}
+:root[data-theme="royal"] .hero h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(44px,6.5vw,82px);letter-spacing:-1.5px}
+:root[data-theme="royal"] .hero p.sub{max-width:650px}
+:root[data-theme="royal"] .hero-eyebrow{letter-spacing:3px;text-transform:uppercase}
+:root[data-theme="royal"] .facts-card{border-radius:0;border-top:1px solid #d7a6b3;border-bottom:1px solid #d7a6b3;box-shadow:none;background:#fff}
+:root[data-theme="royal"] .fact{border-right:1px solid #ead8de}
+:root[data-theme="royal"] .section{padding-top:104px;padding-bottom:104px}
+:root[data-theme="royal"] .section-head.center{max-width:760px;margin-left:auto;margin-right:auto}
+:root[data-theme="royal"] .section-head .eyebrow{letter-spacing:3px}
+:root[data-theme="royal"] h2.title,:root[data-theme="royal"] .program h3{font-family:'Playfair Display',Georgia,serif}
+:root[data-theme="royal"] .programs{grid-template-columns:repeat(2,minmax(0,1fr));gap:0;border-top:1px solid #e8d6dc;border-left:1px solid #e8d6dc}
+:root[data-theme="royal"] .program{border:0;border-right:1px solid #e8d6dc;border-bottom:1px solid #e8d6dc;border-radius:0;box-shadow:none;background:transparent;padding:34px}
+:root[data-theme="royal"] .program .ico{border-radius:50%;background:#f7e9ed}
+:root[data-theme="royal"] .staff-card,.:root[data-theme="royal"] .post{border-radius:2px;box-shadow:none}
+:root[data-theme="royal"] .g-item{border-radius:2px}
+:root[data-theme="royal"] .adm-card{border-radius:2px;border-top:5px solid #d7a6b3}
+:root[data-theme="royal"] .cta{background:#3b0d1c}
+:root[data-theme="royal"] footer{border-top:5px double #a96b7e}
+
+/* SUNRISE ORANGE — bright, playful, asymmetric and energetic */
+:root[data-theme="sunrise"] .topbar{background:#2a1a0a}
+:root[data-theme="sunrise"] .navbar{background:#fffaf4}
+:root[data-theme="sunrise"] .navbar-inner{min-height:88px}
+:root[data-theme="sunrise"] .brand .mark{border-radius:18px 5px 18px 5px}
+:root[data-theme="sunrise"] .hero{min-height:630px;background:#2a1a0a}
+:root[data-theme="sunrise"] .hero-slide::after{background:linear-gradient(90deg,rgba(35,20,7,.88),rgba(74,44,16,.45) 65%,rgba(74,44,16,.12))}
+:root[data-theme="sunrise"] .hero-inner{max-width:760px}
+:root[data-theme="sunrise"] .hero h1{font-size:clamp(46px,6.2vw,78px);line-height:1.02;letter-spacing:-2.8px}
+:root[data-theme="sunrise"] .hero-eyebrow{display:inline-flex;padding:10px 18px;background:#f7a34a;color:#2a1a0a;border-radius:4px 18px 4px 18px;font-weight:900}
+:root[data-theme="sunrise"] .facts{margin-top:-54px;position:relative;z-index:4}
+:root[data-theme="sunrise"] .facts-card{border-radius:24px 6px 24px 6px;transform:rotate(-.5deg);box-shadow:0 20px 44px rgba(70,38,9,.15)}
+:root[data-theme="sunrise"] .about-grid{grid-template-columns:.9fr 1.1fr}
+:root[data-theme="sunrise"] .about-visual{border-radius:8px 80px 8px 8px;transform:rotate(-1deg)}
+:root[data-theme="sunrise"] .about-badge{border-radius:4px 20px 4px 20px}
+:root[data-theme="sunrise"] .section:nth-of-type(even) .section-head:not(.center){margin-left:auto;text-align:right}
+:root[data-theme="sunrise"] .programs{grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}
+:root[data-theme="sunrise"] .program{grid-column:span 2;border:0;border-radius:8px 28px 8px 8px;background:#fff;padding:28px;box-shadow:0 14px 30px rgba(75,42,12,.08)}
+:root[data-theme="sunrise"] .program:nth-child(1),:root[data-theme="sunrise"] .program:nth-child(4){grid-column:span 3}
+:root[data-theme="sunrise"] .program:nth-child(2),:root[data-theme="sunrise"] .program:nth-child(5){transform:translateY(22px)}
+:root[data-theme="sunrise"] .program .num{color:#f3a04b}
+:root[data-theme="sunrise"] .pitem{border-radius:8px 28px 8px 8px;background:#fff}
+:root[data-theme="sunrise"] .g-item{border-radius:8px 28px 8px 8px}
+:root[data-theme="sunrise"] .adm-card{border-radius:8px 30px 8px 8px}
+:root[data-theme="sunrise"] .cta{background:#d9650b;border-radius:0 70px 0 0}
+
+/* MODERN ACADEMIC — structured campus prospectus / grid system */
+:root[data-theme="academic"] .topbar{background:#102b46}
+:root[data-theme="academic"] .navbar{box-shadow:0 4px 0 #d5e8f6}
+:root[data-theme="academic"] .nav-links a.active,:root[data-theme="academic"] .nav-links a:hover{border-bottom:3px solid var(--blue);border-radius:0}
+:root[data-theme="academic"] .hero{min-height:570px}
+:root[data-theme="academic"] .hero-slide::after{background:linear-gradient(90deg,rgba(8,28,47,.94) 0%,rgba(16,43,70,.82) 52%,rgba(16,43,70,.3) 100%)}
+:root[data-theme="academic"] .hero-inner{max-width:700px;border-left:5px solid #8fc3e8;padding:10px 0 10px 32px}
+:root[data-theme="academic"] .hero h1{font-family:'Nunito Sans',sans-serif;font-weight:900;letter-spacing:-1.7px}
+:root[data-theme="academic"] .facts-card{border-radius:10px;box-shadow:0 8px 28px rgba(16,43,70,.09)}
+:root[data-theme="academic"] .about-grid{grid-template-columns:1fr 1fr;gap:48px}
+:root[data-theme="academic"] .about-visual{border-radius:10px}
+:root[data-theme="academic"] .section-head:not(.center){border-left:4px solid var(--blue);padding-left:22px}
+:root[data-theme="academic"] .programs{grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid #d5e8f6;border-left:1px solid #d5e8f6}
+:root[data-theme="academic"] .program{border:0;border-right:1px solid #d5e8f6;border-bottom:1px solid #d5e8f6;border-radius:0;box-shadow:none;background:transparent;padding:26px}
+:root[data-theme="academic"] .program .num{font-family:'Nunito Sans',sans-serif;font-size:32px;color:#9bbbd2}
+:root[data-theme="academic"] .staff-card,:root[data-theme="academic"] .post{border-radius:10px;box-shadow:0 8px 22px rgba(16,43,70,.06)}
+:root[data-theme="academic"] .step .n{border-radius:8px}
+:root[data-theme="academic"] .cta{background:#102b46;border-top:8px solid #2878b8}
+:root[data-theme="academic"] footer{border-top:8px solid #2878b8}
+
+/* IVORY MINIMAL — quiet luxury, magazine typography and whitespace */
+:root[data-theme="ivory"] body{background:#fbf8f1}
+:root[data-theme="ivory"] .topbar{background:#33302a}
+:root[data-theme="ivory"] .navbar{background:#fbf8f1;border-bottom:1px solid #d8cdb9}
+:root[data-theme="ivory"] .navbar-inner{min-height:100px}
+:root[data-theme="ivory"] .brand-text strong,:root[data-theme="ivory"] .nav-links a,:root[data-theme="ivory"] h1,:root[data-theme="ivory"] h2.title,:root[data-theme="ivory"] h3{font-family:'Playfair Display',Georgia,serif}
+:root[data-theme="ivory"] .nav-links{gap:26px}
+:root[data-theme="ivory"] .hero{min-height:680px}
+:root[data-theme="ivory"] .hero-slide::after{background:linear-gradient(90deg,rgba(36,32,25,.84),rgba(51,48,42,.44) 62%,rgba(51,48,42,.1))}
+:root[data-theme="ivory"] .hero-inner{max-width:740px}
+:root[data-theme="ivory"] .hero h1{font-size:clamp(48px,6.5vw,84px);font-weight:600;line-height:1.04;letter-spacing:-2px}
+:root[data-theme="ivory"] .hero-eyebrow{letter-spacing:3px;text-transform:uppercase}
+:root[data-theme="ivory"] .facts-card{background:transparent;box-shadow:none;border-top:1px solid #d8cdb9;border-bottom:1px solid #d8cdb9;border-radius:0}
+:root[data-theme="ivory"] .fact{border-right:1px solid #e6ddce}
+:root[data-theme="ivory"] .section{padding-top:112px;padding-bottom:112px}
+:root[data-theme="ivory"] .container{max-width:1160px}
+:root[data-theme="ivory"] .section-head{max-width:680px}
+:root[data-theme="ivory"] .section-head .eyebrow{letter-spacing:3px}
+:root[data-theme="ivory"] .about-grid{grid-template-columns:1fr 1fr;gap:80px}
+:root[data-theme="ivory"] .about-visual{border-radius:0}
+:root[data-theme="ivory"] .about-badge{border-radius:0;background:#33302a}
+:root[data-theme="ivory"] .programs{display:block;border-top:1px solid #e1d8c9}
+:root[data-theme="ivory"] .program{display:grid;grid-template-columns:70px 60px minmax(180px,.7fr) 1fr;align-items:center;gap:20px;border:0;border-bottom:1px solid #e1d8c9;border-radius:0;background:transparent;box-shadow:none;padding:24px 8px}
+:root[data-theme="ivory"] .program .num{position:static;font-size:30px;color:#b7a98f}
+:root[data-theme="ivory"] .program .ico{margin:0}
+:root[data-theme="ivory"] .program h3,:root[data-theme="ivory"] .program p{margin:0}
+:root[data-theme="ivory"] .staff-card,:root[data-theme="ivory"] .post{border-radius:0;box-shadow:none;border:0;border-bottom:1px solid #ded4c4;background:transparent}
+:root[data-theme="ivory"] .staff-info,:root[data-theme="ivory"] .post-body{padding-left:0;padding-right:0}
+:root[data-theme="ivory"] .g-item{border-radius:0}
+:root[data-theme="ivory"] .cta{background:#33302a}
+:root[data-theme="ivory"] footer{background:#292720}
+
+/* BURGUNDY CLASSIC — dramatic dark panels and gallery-led luxury */
+:root[data-theme="burgundy"] .topbar{background:#300d1d}
+:root[data-theme="burgundy"] .navbar{border-bottom:1px solid #e5cbd5}
+:root[data-theme="burgundy"] .hero{min-height:700px}
+:root[data-theme="burgundy"] .hero-slide::after{background:linear-gradient(180deg,rgba(40,8,22,.25) 5%,rgba(48,12,26,.9) 100%)}
+:root[data-theme="burgundy"] .hero-content{align-items:flex-end}
+:root[data-theme="burgundy"] .hero-inner{max-width:900px;padding-bottom:48px}
+:root[data-theme="burgundy"] .hero h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(46px,6vw,78px);max-width:820px}
+:root[data-theme="burgundy"] .hero p.sub{max-width:650px}
+:root[data-theme="burgundy"] .facts{background:#451326;padding:0 0 30px}
+:root[data-theme="burgundy"] .facts-card{background:#5a1c35;color:#fff;border:1px solid rgba(255,255,255,.14);border-radius:14px}
+:root[data-theme="burgundy"] .fact b{color:#fff}
+:root[data-theme="burgundy"] .fact span{color:#e7cbd5}
+:root[data-theme="burgundy"] .about-grid{grid-template-columns:.85fr 1.15fr}
+:root[data-theme="burgundy"] .about-visual{border-radius:14px 14px 90px 14px}
+:root[data-theme="burgundy"] .programs{grid-template-columns:1fr;gap:0;border-top:1px solid #ecdce3}
+:root[data-theme="burgundy"] .program{display:grid;grid-template-columns:56px 54px 240px 1fr;align-items:center;gap:20px;border:0;border-bottom:1px solid #ecdce3;border-radius:0;background:transparent;box-shadow:none;padding:24px 8px}
+:root[data-theme="burgundy"] .program .num{position:static;font-size:28px}
+:root[data-theme="burgundy"] .program .ico{margin:0}
+:root[data-theme="burgundy"] .program h3,:root[data-theme="burgundy"] .program p{margin:0}
+:root[data-theme="burgundy"] .adm-card{background:#451326;border:1px solid #9b3454;border-radius:14px}
+:root[data-theme="burgundy"] .cta{background:#451326}
+:root[data-theme="burgundy"] footer{background:#300d1d}
+
+/* FUTURE FORWARD — modular technology-inspired panels and geometry */
+:root[data-theme="future"] body{background:#f4fbfa}
+:root[data-theme="future"] .topbar{background:#0b2730}
+:root[data-theme="future"] .navbar{background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border:1px solid #d7eae7;border-radius:0 0 18px 18px}
+:root[data-theme="future"] .navbar-inner{min-height:86px}
+:root[data-theme="future"] .brand .mark{border-radius:12px;transform:rotate(-4deg)}
+:root[data-theme="future"] .hero{min-height:620px;margin:14px 14px 0;border-radius:24px;overflow:hidden;background-color:#102b36}
+:root[data-theme="future"] .hero-slide{border-radius:24px}
+:root[data-theme="future"] .hero-slide::after{background:linear-gradient(105deg,rgba(8,34,42,.94),rgba(16,43,54,.72) 58%,rgba(16,43,54,.2))}
+:root[data-theme="future"] .hero-slide::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.07) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(90deg,#000,transparent 85%)}
+:root[data-theme="future"] .hero-inner{max-width:760px}
+:root[data-theme="future"] .hero h1{font-family:'Nunito Sans',sans-serif;font-weight:900;letter-spacing:-2px}
+:root[data-theme="future"] .hero-eyebrow{display:inline-flex;border:1px solid rgba(180,245,238,.45);background:rgba(10,164,160,.16);border-radius:8px;padding:9px 14px}
+:root[data-theme="future"] .facts-card{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;background:transparent;box-shadow:none}
+:root[data-theme="future"] .fact{background:#fff;border:1px solid #d7eae7;border-radius:14px;padding:22px 16px;box-shadow:0 8px 24px rgba(16,43,54,.05)}
+:root[data-theme="future"] .about-grid{grid-template-columns:1fr 1fr;gap:36px}
+:root[data-theme="future"] .about-visual{border-radius:18px;outline:1px solid #b8ded9;outline-offset:8px}
+:root[data-theme="future"] .programs{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+:root[data-theme="future"] .program{border:1px solid #d7eae7;border-radius:14px;background:linear-gradient(145deg,#fff,#f0faf8);box-shadow:0 10px 28px rgba(16,43,54,.05);padding:24px}
+:root[data-theme="future"] .program:nth-child(1),:root[data-theme="future"] .program:nth-child(2){grid-column:span 2}
+:root[data-theme="future"] .program .num{font-family:'Nunito Sans',sans-serif;font-weight:900}
+:root[data-theme="future"] .pitem{border:1px solid #d7eae7;border-radius:14px;background:#fff}
+:root[data-theme="future"] .staff-card,:root[data-theme="future"] .post{border-radius:14px;border:1px solid #d7eae7;box-shadow:0 10px 28px rgba(16,43,54,.05)}
+:root[data-theme="future"] .g-item{border-radius:14px}
+:root[data-theme="future"] .cta{background:#102b36;border:1px solid #0ba4a0;margin:0 14px 14px;border-radius:18px}
+:root[data-theme="future"] footer{border-top:4px solid #0ba4a0}
+
+@media(max-width:900px){
+  :root[data-theme="sunrise"] .programs{grid-template-columns:repeat(2,minmax(0,1fr))}
+  :root[data-theme="sunrise"] .program,:root[data-theme="sunrise"] .program:nth-child(n){grid-column:auto;transform:none}
+  :root[data-theme="academic"] .programs{grid-template-columns:repeat(2,minmax(0,1fr))}
+  :root[data-theme="future"] .programs{grid-template-columns:repeat(2,minmax(0,1fr))}
+  :root[data-theme="ivory"] .program{grid-template-columns:42px 48px 1fr}
+  :root[data-theme="ivory"] .program p{grid-column:3}
+  :root[data-theme="burgundy"] .program{grid-template-columns:42px 48px 1fr}
+  :root[data-theme="burgundy"] .program p{grid-column:3}
+}
+@media(max-width:640px){
+  :root[data-theme="emerald"] .navbar{width:100%;margin:0;border-radius:0}
+  :root[data-theme="emerald"] .hero{width:100%;margin:0;border-radius:0;min-height:560px}
+  :root[data-theme="emerald"] .hero-slide{border-radius:0}
+  :root[data-theme="emerald"] .programs,:root[data-theme="sunrise"] .programs,:root[data-theme="academic"] .programs,:root[data-theme="future"] .programs{grid-template-columns:1fr}
+  :root[data-theme="emerald"] .program:nth-child(3n),:root[data-theme="future"] .program:nth-child(n){grid-column:auto}
+  :root[data-theme="royal"] .hero{min-height:560px}
+  :root[data-theme="royal"] .programs{grid-template-columns:1fr}
+  :root[data-theme="sunrise"] .facts-card{transform:none}
+  :root[data-theme="academic"] .hero-inner{padding-left:18px}
+  :root[data-theme="ivory"] .section{padding-top:72px;padding-bottom:72px}
+  :root[data-theme="ivory"] .program{grid-template-columns:34px 42px 1fr;padding:18px 2px}
+  :root[data-theme="burgundy"] .program{grid-template-columns:34px 42px 1fr;padding:18px 2px}
+  :root[data-theme="future"] .hero{margin:0;border-radius:0}
+  :root[data-theme="future"] .hero-slide{border-radius:0}
+  :root[data-theme="future"] .facts-card{grid-template-columns:repeat(2,minmax(0,1fr))}
+  :root[data-theme="future"] .cta{margin:0;border-radius:0}
+}
+@media(prefers-reduced-motion:reduce){
+  :root[data-theme="sunrise"] .program:nth-child(n){transform:none}
+}
