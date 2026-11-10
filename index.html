@@ -405,9 +405,17 @@ tr:hover td{background:var(--mist)}
 :root[data-theme="emerald"]{--navy:#06301f;--navy-2:#0b4a30;--blue:#0f8a5a;--blue-2:#15a46c;--sky:#e6f6ee;--sky-2:#c8ebd8;--mist:#f4faf7;--ink:#10261c;--muted:#4f6a5d;--soft:#85a093;--line:#d8eadf;--r-lg:14px}
 :root[data-theme="royal"]{--navy:#3b0d1c;--navy-2:#5a1229;--blue:#a3213f;--blue-2:#c22d50;--sky:#fbeaee;--sky-2:#f3cdd6;--mist:#fdf6f7;--ink:#2a0f17;--muted:#6b4a54;--soft:#a58a93;--line:#f0dde1;--r:4px;--r-lg:6px;--serif:'Playfair Display',Georgia,serif}
 :root[data-theme="sunrise"]{--navy:#2a1a0a;--navy-2:#4a2c10;--blue:#d9650b;--blue-2:#f07a1a;--sky:#fff0e1;--sky-2:#fddcbc;--mist:#fffaf4;--ink:#2a1a0a;--muted:#6e5a45;--soft:#a8957e;--line:#f3e3d0;--r:16px;--r-lg:28px}
+:root[data-theme="academic"]{--navy:#102b46;--navy-2:#1c456b;--blue:#2878b8;--blue-2:#3994d6;--sky:#eaf4fb;--sky-2:#d5e8f6;--mist:#f7fbfe;--ink:#152b3d;--muted:#536b7d;--soft:#8ca0af;--line:#dce8f0;--r:10px;--r-lg:16px}
+:root[data-theme="ivory"]{--navy:#33302a;--navy-2:#514b40;--blue:#9b7844;--blue-2:#b8945a;--sky:#f4efe5;--sky-2:#e9dfcc;--mist:#fbf8f1;--ink:#292720;--muted:#686253;--soft:#a39b88;--line:#e8e0d1;--r:4px;--r-lg:8px;--serif:'Playfair Display',Georgia,serif}
+:root[data-theme="burgundy"]{--navy:#451326;--navy-2:#672039;--blue:#9b3454;--blue-2:#bd4b6d;--sky:#f8eaf0;--sky-2:#efd3df;--mist:#fdf7f9;--ink:#351321;--muted:#765464;--soft:#ad91a0;--line:#ecdce3;--r:8px;--r-lg:14px;--serif:'Playfair Display',Georgia,serif}
+:root[data-theme="future"]{--navy:#102b36;--navy-2:#174451;--blue:#087e83;--blue-2:#0ba4a0;--sky:#e3f5f3;--sky-2:#c7eae6;--mist:#f4fbfa;--ink:#102b30;--muted:#4d6d70;--soft:#86a6a5;--line:#d7eae7;--r:14px;--r-lg:24px}
 [data-theme="emerald"] .hero-slide::after{background:linear-gradient(100deg,rgba(4,32,20,.92) 0%,rgba(6,48,31,.72) 46%,rgba(6,48,31,.18) 100%)}
 [data-theme="royal"] .hero-slide::after{background:linear-gradient(100deg,rgba(40,8,20,.92) 0%,rgba(59,13,28,.72) 46%,rgba(59,13,28,.18) 100%)}
 [data-theme="sunrise"] .hero-slide::after{background:linear-gradient(100deg,rgba(30,16,4,.9) 0%,rgba(74,44,16,.7) 46%,rgba(74,44,16,.15) 100%)}
+[data-theme="academic"] .hero-slide::after{background:linear-gradient(100deg,rgba(8,28,47,.92) 0%,rgba(16,43,70,.72) 46%,rgba(16,43,70,.16) 100%)}
+[data-theme="ivory"] .hero-slide::after{background:linear-gradient(100deg,rgba(36,32,25,.90) 0%,rgba(51,48,42,.68) 46%,rgba(51,48,42,.12) 100%)}
+[data-theme="burgundy"] .hero-slide::after{background:linear-gradient(100deg,rgba(48,12,26,.92) 0%,rgba(69,19,38,.72) 46%,rgba(69,19,38,.16) 100%)}
+[data-theme="future"] .hero-slide::after{background:linear-gradient(100deg,rgba(8,34,42,.92) 0%,rgba(16,43,54,.72) 46%,rgba(16,43,54,.16) 100%)}
 [data-theme="royal"] .hero-inner{margin:0 auto;text-align:center}
 [data-theme="royal"] .hero-actions,[data-theme="royal"] .hero-eyebrow{justify-content:center}
 [data-theme="royal"] .hero p.sub{margin-left:auto;margin-right:auto}
@@ -955,7 +963,8 @@ async function loadPublicSite() {
   }
 }
 
-const THEMES = ['classic','emerald','royal','sunrise'];
+const THEMES = ['classic','emerald','royal','sunrise','academic','ivory','burgundy','future'];
+const THEME_LABELS = { classic:'Classic Blue', emerald:'Emerald Prestige', royal:'Royal Burgundy', sunrise:'Sunrise Orange', academic:'Modern Academic', ivory:'Ivory Minimal', burgundy:'Burgundy Classic', future:'Future Forward' };
 function applyTheme(t) {
   t = THEMES.includes(t) ? t : 'classic';
   document.documentElement.dataset.theme = t;
@@ -1443,8 +1452,8 @@ async function renderSettingsPane(pane) {
         <div><label>Motto</label><input id="sMotto" value="${escAttr(s.motto || '')}"></div>
       </div>
       <div><label>Website theme</label>
-        <select id="sTheme" onchange="applyTheme(this.value)">${THEMES.map(t => `<option value="${t}"${(s.theme || 'classic') === t ? ' selected' : ''}>${t[0].toUpperCase() + t.slice(1)}</option>`).join('')}</select>
-        <p class="hint">Classic blue, Emerald green, Royal maroon, Sunrise orange. Previews instantly; click Save settings to publish.</p></div>
+        <select id="sTheme" onchange="applyTheme(this.value)">${THEMES.map(t => `<option value="${t}"${(s.theme || 'classic') === t ? ' selected' : ''}>${THEME_LABELS[t] || t}</option>`).join('')}</select>
+        <p class="hint">Choose from eight school-wide colour systems. Preview instantly; click Save settings to publish to every visitor.</p></div>
       <div><label>Short description (shown in hero and footer)</label><textarea id="sAbout" rows="3">${esc(s.about_short || '')}</textarea></div>
       ${imageField('sLogo', 'School logo (optional — replaces the default crest)', s.logo_url)}
       <h3>Contact</h3>
