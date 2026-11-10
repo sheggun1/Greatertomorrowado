@@ -1008,8 +1008,8 @@ function showAdmin() {
   $('adminView').style.display = 'block';
   document.body.classList.remove('public-on');
   $('adminUser').textContent = '@' + state.username + (state.role === 'super_admin' ? ' (super admin)' : '');
-  document.querySelectorAll('#adminTabs [data-super]').forEach(t => t.style.display = state.role === 'super_admin' ? '' : 'none');
-  switchTab(state.mustChange ? 'account' : 'settings');
+  refreshAdminTabs();
+  switchTab(state.mustChange ? 'account' : defaultAdminTab());
   if (state.mustChange) toast('Please change your password.', 'info');
 }
 function toggleMenu() {
@@ -1138,12 +1138,39 @@ const ADMIN_TABS = [
   ['proprietor','Proprietor'],['staff','Staff'],['gallery','Gallery'],['admissions','Admissions'],
   ['pages','Pages'],['content','News'],['links','Quick links'],['users','Users'],['log','Activity log'],['account','Account']
 ];
+const TAB_ROLES = {
+  settings:['admin','super_admin'], slides:['admin','super_admin'], about:['admin','super_admin'],
+  aboutschool:['admin','super_admin'], proprietor:['admin','super_admin'], staff:['admin','super_admin'],
+  gallery:['editor','admin','super_admin'], admissions:['admin','super_admin'], pages:['admin','super_admin'],
+  content:['editor','admin','super_admin'], links:['admin','super_admin'],
+  users:['super_admin'], log:['super_admin'], account:['editor','admin','super_admin']
+};
+function roleCanAccessTab(name) { return (TAB_ROLES[name] || []).includes(state.role); }
+function defaultAdminTab() {
+  if (roleCanAccessTab('settings')) return 'settings';
+  if (roleCanAccessTab('content')) return 'content';
+  return 'account';
+}
+function refreshAdminTabs() {
+  document.querySelectorAll('#adminTabs .tab').forEach(t => { t.hidden = !roleCanAccessTab(t.dataset.tab); });
+}
 function buildAdminTabs() {
   $('adminTabs').innerHTML = ADMIN_TABS.map(([k, l]) =>
-    `<button class="tab ${k === 'settings' ? 'active' : ''}" data-tab="${k}" ${k === 'users' || k === 'log' ? 'data-super="1" style="display:none"' : ''}>${l}</button>`).join('');
-  $('adminTabs').addEventListener('click', e => { const b = e.target.closest('.tab'); if (b) switchTab(b.dataset.tab); });
+    `<button type="button" class="tab ${k === 'settings' ? 'active' : ''}" data-tab="${k}" hidden>${l}</button>`).join('');
+  refreshAdminTabs();
+  $('adminTabs').addEventListener('click', e => {
+    const b = e.target.closest('.tab');
+    if (b && roleCanAccessTab(b.dataset.tab)) switchTab(b.dataset.tab);
+  });
 }
 function switchTab(name) {
+  if (!roleCanAccessTab(name)) {
+    toast('Your account does not have access to that section.', 'error');
+    const fallback = defaultAdminTab();
+    if (roleCanAccessTab(fallback) && fallback !== name) return switchTab(fallback);
+    $('adminPanes').innerHTML = empty('Access denied', 'This account cannot open that section.');
+    return;
+  }
   state.currentTab = name;
   document.querySelectorAll('#adminTabs .tab').forEach(t => t.classList.toggle('active', t.dataset.tab === name));
   const pane = $('adminPanes');
@@ -1192,21 +1219,10 @@ async function renderSettingsPane(pane) {
       <p class="hint">Please make sure these figures are accurate before publishing. They appear prominently on the homepage.</p>
       <button type="submit" class="btn" style="align-self:flex-start">Save settings</button>
     </form></div>
-    <div class="panel" style="margin-top:18px"><h3>Image visibility repair</h3>
-      <p class="hint">If pictures appear in the admin area but not on the public website, this checks existing Google Drive image files and enables link viewing where your Workspace policy allows it.</p>
-      <button type="button" class="btn btn-soft" id="repairImagesBtn">Repair existing image access</button>
-      <p class="hint" id="repairImagesResult" role="status" aria-live="polite"></p>
+    <div class="panel image-storage-note" style="margin-top:18px">
+      <h3>Image storage</h3>
+      <p class="hint">New photos are uploaded to Cloudinary by the portal. Google Drive sharing permissions are not used. If a photo does not appear, check its saved image URL or upload a replacement.</p>
     </div>`;
-  $('repairImagesBtn').onclick = async () => {
-    const btn = $('repairImagesBtn'), out = $('repairImagesResult');
-    btn.disabled = true; btn.textContent = 'Checking images…'; out.textContent = '';
-    try {
-      const r = await api('repair_public_images');
-      out.textContent = `${r.message || 'Image check completed.'} Found: ${r.found || 0}; updated: ${r.repaired || 0}; failed: ${r.failed || 0}.`;
-      toast(r.failed ? 'Some images still need attention' : 'Image access repaired', r.failed ? 'error' : 'success');
-    } catch (err) { out.textContent = err.message; toast(err.message, 'error'); }
-    finally { btn.disabled = false; btn.textContent = 'Repair existing image access'; }
-  };
   pane.querySelectorAll('[data-pick]').forEach(z => {
     const id = z.dataset.pick, input = $(id + '_file');
     z.onclick = () => input.click(); input.onchange = () => uploadImage(id, input.files[0]);
@@ -1663,4 +1679,13 @@ function renderAccountPane(pane) {
       ticking = false;
       $('navbar').classList.toggle('scrolled', window.scrollY > 8);
       const max = document.documentElement.scrollHeight - window.innerHeight;
-      document.documentElement.style.setProperty('--sp', max > 0 ? Math.min(1, window.scro
+      document.documentElement.style.setProperty('--sp', max > 0 ? Math.min(1, window.scrollY / max) : 0);
+      const activeSection = spyIds.map(id => $(id)).filter(el => el && el.getBoundingClientRect().top <= 140).pop();
+      document.querySelectorAll('.nav-links a').forEach(a => a.classList.toggle('active', !!activeSection && a.getAttribute('href') === '#' + activeSection.id));
+    });
+  }, { passive: true });
+  if (state.token) showAdmin(); else showPublic();
+})();
+</script>
+</body>
+</html>
