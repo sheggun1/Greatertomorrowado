@@ -470,7 +470,7 @@ tr:hover td{background:var(--mist)}
 :root[data-theme="royal"] .programs{grid-template-columns:repeat(2,minmax(0,1fr));gap:0;border-top:1px solid #e8d6dc;border-left:1px solid #e8d6dc}
 :root[data-theme="royal"] .program{border:0;border-right:1px solid #e8d6dc;border-bottom:1px solid #e8d6dc;border-radius:0;box-shadow:none;background:transparent;padding:34px}
 :root[data-theme="royal"] .program .ico{border-radius:50%;background:#f7e9ed}
-:root[data-theme="royal"] .staff-card,.:root[data-theme="royal"] .post{border-radius:2px;box-shadow:none}
+:root[data-theme="royal"] .staff-card,:root[data-theme="royal"] .post{border-radius:2px;box-shadow:none}
 :root[data-theme="royal"] .g-item{border-radius:2px}
 :root[data-theme="royal"] .adm-card{border-radius:2px;border-top:5px solid #d7a6b3}
 :root[data-theme="royal"] .cta{background:#3b0d1c}
