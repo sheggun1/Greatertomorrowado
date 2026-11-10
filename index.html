@@ -804,7 +804,13 @@ function renderAbout() {
 function renderAboutSchool(rows) {
   const el = $('aboutSchoolList');
   rows = rows || [];
-  if (!rows.length) { el.innerHTML = empty('Our story is coming soon'); return; }
+  if (!rows.length) rows = [
+    { heading: 'Our history', body: 'Greater Tomorrow Model Schools began with the establishment of its primary section in 1997. The secondary school was established in 2007 and moved to its permanent site at Embassy Island, Moferee Extension, Ado-Ekiti, in 2011. Today, the school serves learners across its primary and secondary sections, guided by the motto: Jesus, Our Teacher.' },
+    { heading: 'Our vision', body: 'To be a leading institution recognised for raising academically excellent, morally upright and purpose-driven individuals.' },
+    { heading: 'Our mission', body: 'To provide quality, God-centred education in a supportive learning environment that develops intellectual ability, practical skills, discipline and good character.' },
+    { heading: 'Our learning environment', body: 'The school provides a co-educational learning environment with day and boarding options, science laboratories for Biology, Chemistry and Physics, and a modern computer laboratory.' },
+    { heading: 'Academic highlights', body: 'School highlights include a reported 345 UTME score in 2026, nine WAEC A1 grades, scholarship opportunities at Suleja Gifted School, strong Ekiti State Common Entrance performances and participation and achievements in Cowbellpedia.' }
+  ];
   el.innerHTML = rows.map(r => `
     <div class="story ${r.image_url ? 'has-img' : ''}">
       ${r.image_url ? `<img class="story-img" loading="lazy" src="${escAttr(fixImg(r.image_url))}" alt="${escAttr(r.heading || '')}">` : ''}
@@ -815,7 +821,11 @@ function renderAboutSchool(rows) {
 function renderProprietor(rows) {
   const el = $('proprietorBox');
   rows = rows || [];
-  if (!rows.length) { el.innerHTML = empty("The Proprietor's message is coming soon"); return; }
+  if (!rows.length) rows = [{
+    name: 'The Proprietor',
+    title: 'Proprietor',
+    message: 'Welcome to Greater Tomorrow Model Schools, where we believe that every child has a purpose and deserves the opportunity to fulfil that purpose.\n\nOur journey began in 1997 with the establishment of our primary section. In 2007, we extended that vision through the establishment of our secondary school, which moved to its permanent site at Embassy Island, Moferee Extension, Ado-Ekiti, in 2011.\n\nOur commitment is to provide quality education founded on sound academic instruction, good character, discipline and the fear of God. We are encouraged by the progress of our learners in public examinations, academic competitions and scholarship opportunities.\n\nEducation goes beyond passing examinations. We seek to develop confident, responsible and innovative young people who can make meaningful contributions to society. We appreciate our parents, staff, alumni and friends for their trust and partnership. Together, we will continue building a greater tomorrow for every child.\n\nJesus, Our Teacher.'
+  }];
   const p = rows[0];
   el.innerHTML = `
     <div class="prop reveal">
@@ -881,11 +891,11 @@ function closeLightbox() { document.querySelectorAll('.lightbox').forEach(e => e
 function renderAdmissions() {
   const el = $('admissionsList');
   const steps = state.admissions.length ? state.admissions : [
-    { title: 'Obtain the application form', body: 'Visit the school office to collect a form. The office is open Monday to Friday, 8:00 AM – 3:00 PM.' },
-    { title: 'Submit the completed form', body: 'Return it with a birth certificate, the last school report card and passport photographs.' },
-    { title: 'Entrance examination', body: 'A written test covering English, Mathematics and General Knowledge.' },
-    { title: 'Interview and offer', body: 'Successful candidates are invited for a short interview, after which offer letters are issued.' },
-    { title: 'Acceptance and enrolment', body: 'Pay the acceptance fee, complete registration and receive your welcome pack.' }
+    { title: 'Obtain the application form', body: 'Visit the school office to obtain an admission form and guidance on the application process.' },
+    { title: 'Complete and submit the form', body: 'Fill in the required details and submit the completed form with the supporting documents requested by the school.' },
+    { title: 'Admission assessment', body: 'Applicants take the school’s entrance assessment. The school will communicate the relevant arrangements to parents or guardians.' },
+    { title: 'Admission offer', body: 'Successful applicants receive an admission offer and information about the next steps.' },
+    { title: 'Acceptance and enrolment', body: 'Accept the offer, complete the enrolment requirements and receive information for resumption.' }
   ];
   el.innerHTML = steps.map((a, i) => `
     <div class="step"><div class="n">${i + 1}</div><h3>${esc(a.title)}</h3><p>${esc(a.body)}</p></div>`).join('');
